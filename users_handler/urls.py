@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("", include("users_bank.urls")),
+
+    # Updated the default name as we have an url for admins/
+    path('__admin__/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
-    # path("users/", include("users_bank.urls")),
+    # Add login and logout views
+    path('api-auth/', include('rest_framework.urls')),
 ]
