@@ -12,10 +12,17 @@ class CustomerSerializer(serializers.ModelSerializer):
             'id', 'creator', 'first_name', 'last_name', 'iban'
         ]
 
+    def validate(self, data):
+        if not data["iban"].isalnum():
+            raise serializers.ValidationError('IBAN can only contain alpha-numeric characters.')
+        if not data["first_name"].isalpha() or not data["last_name"].isalpha():
+            raise serializers.ValidationError('First and last name can only contain alphabetic character.')
+        return data
+
 
 class UserSerializer(serializers.ModelSerializer):
     # As it is a reverse relationship on the User model, won't be included by default. Therefore, must explicitely create it.
-    # TODO: See to include the list of customers related to a given user.
+    # TODO: See to include the list of customers related to a given user?
     """
     customers = serializers.PrimaryKeyRelatedField(many=True, queryset=Customer.objects.all())
     """
