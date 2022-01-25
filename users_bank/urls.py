@@ -7,6 +7,8 @@ from . import views
 urlpatterns = [
     path("", views.api_root),
 
+    # path('rest-auth/google/', views.GoogleLogin.as_view(), name='redirect'),
+
     path("users/", views.CustomerList.as_view(), name="user-list"),
     path("users/<int:pk>/", views.CustomerDetail.as_view(), name="user-detail"),
 

@@ -1,13 +1,29 @@
 from django.contrib.auth.models import User
+from django.shortcuts import render
 
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
+# from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+# from rest_auth.registration.views import SocialLoginView
+
 from .models import Customer
 from .serializers import CustomerSerializer, UserSerializer
 from .permissions import IsCreatorOrReadOnly
+
+
+"""
+class GoogleLogin(SocialLoginView):
+    # Attempt view for creating a google account
+    adapter_class = GoogleOAuth2Adapter
+
+    def post(self, request, *args, **kwargs):
+        response = super(GoogleLogin, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data['key'])
+        return Response({'token': token.key, 'id': token.user_id})
+"""
 
 
 @api_view(["GET"])

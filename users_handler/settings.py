@@ -38,10 +38,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # Necessary for Google auth
+
+    # 3rd party applications
     'debug_toolbar',
     'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    # 'rest_auth',
+
+    # My application
     'users_bank',
 ]
+
+"""
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+SITE_ID = 1
+"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,8 +98,7 @@ WSGI_APPLICATION = 'users_handler.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# if want to run directly, use the following:
-# TODO: Add an other configuration with it
+# if want to run directly, switch localhost_run's key as default:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

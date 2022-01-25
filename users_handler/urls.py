@@ -22,6 +22,8 @@ urlpatterns = [
     # Updated the default name as we have an url for admins/
     path('__admin__/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    # path(r'^rest-auth/', include('rest_auth.urls')),
+
     # Add login and logout views
     path('api-auth/', include('rest_framework.urls')),
 ]

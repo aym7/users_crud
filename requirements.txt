@@ -1,4 +1,6 @@
 django
 django-debug-toolbar
 djangorestframework
+# django-rest-auth
+# django-allauth
 psycopg2-binary

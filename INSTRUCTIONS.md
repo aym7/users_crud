@@ -10,8 +10,7 @@ Please implement a small Django application to manage (CRUD) users and their ban
 Required fields are first name, last name and IBAN.
 Data should be validated.
 
-Administrators of the app should authenticate using a Google account
-
+Administrators of the app should authenticate using a Google account.
 Administrators should be able to create, read, update and delete users
 
 Restrict manipulation operations on a user to the administrator who created them
