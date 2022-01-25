@@ -40,7 +40,7 @@ class CustomerList(generics.ListCreateAPIView):
     # Modify how the instance save is managed, handling any implicit information
     def perform_create(self, serializer):
         # Associates the user that created the Customer with it.
-        serializer.save(owner=self.request.user)
+        serializer.save(creator=self.request.user)
 
 class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
     """ Use of a generics view to automatically have the retrieve, update and destroy actions (GET, PUT, DELETE) on a specific customer.
