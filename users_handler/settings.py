@@ -83,8 +83,8 @@ DATABASES = {
         'NAME': 'pg_db',
         'USER':  'admin_db',
         'PASSWORD': 'MyD@t@65',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 # TODO: Make it work for postgresql
