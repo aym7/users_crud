@@ -80,19 +80,21 @@ WSGI_APPLICATION = 'users_handler.wsgi.application'
 
 # if want to run directly, use the following:
 # TODO: Add an other configuration with it
-"""
-'HOST': 'localhost'
-'NAME': 'pg_db',
-'USER':  'admin_db',
-'PASSWORD': 'MyD@t@65',
-"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_DB'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'db', # If want to run directly, use 'localhost' here
+        'HOST': 'db',
+        'PORT': '',
+    },
+    'localhost_run': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pg_db',
+        'USER':  'admin_db',
+        'PASSWORD': 'MyD@t@65',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
