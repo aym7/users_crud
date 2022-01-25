@@ -4,8 +4,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # Command to be executed when launches the container
-    command: 'python manage.py runserver 0.0.0.0:8000'
+    entrypoint: /app/docker-entrypoint.sh
+    # Will setup everything
+    environment:
+        DJANGO_SUPERUSER_PASSWORD: password
+        DJANGO_SUPERUSER_USERNAME: root
+        DJANGO_SUPERUSER_EMAIL: root@test.com
+        POSTGRES_DB: pg_db
+        POSTGRES_USER: admin_db
+        POSTGRES_PASSWORD: MyD@t@65
     ports:
       - 8000:8000
     # All files here are connected with the docker container.
@@ -15,7 +22,7 @@ services:
     depends_on:
       - db
 
-  db: # TODO: Update to PostgreSQL
+  db:
     image: postgres
     # Ensure that if postgresql stops it will restart
     restart: always
@@ -23,9 +30,9 @@ services:
       POSTGRES_DB: pg_db
       POSTGRES_USER: admin_db
       POSTGRES_PASSWORD: MyD@t@65
-      # POSTGRES_PASSWORD: MyD@t@65
     volumes:
       - .dbdata:/var/lib/postgresql
     # Not mandatory but will allow us to have access to the data in the DB
     ports:
       - 10320:5432
+

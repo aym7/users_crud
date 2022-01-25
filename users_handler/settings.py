@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,23 +78,25 @@ WSGI_APPLICATION = 'users_handler.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# if want to run directly, use the following:
+# TODO: Add an other configuration with it
+"""
+'HOST': 'localhost'
+'NAME': 'pg_db',
+'USER':  'admin_db',
+'PASSWORD': 'MyD@t@65',
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pg_db',
-        'USER':  'admin_db',
-        'PASSWORD': 'MyD@t@65',
-        'HOST': 'db',
-        'PORT': '5432',
+        'NAME': os.environ.get('POSTGRES_DB'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db', # If want to run directly, use 'localhost' here
+        'PORT': '',
     }
 }
-# TODO: Make it work for postgresql
-"""
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-"""
+
 
 # Enables pagination (control how many objects per page are returned)
 REST_FRAMEWORK = {
